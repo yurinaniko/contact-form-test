@@ -1,17 +1,17 @@
 # お問い合わせフォーム（確認テスト）
-
+```
 本アプリケーションは Laravel 8 を使用して構築したお問い合わせ管理システムです。
 ユーザー側ではお問い合わせフォーム、確認・サンクスページ、登録画面、ログイン機能を提供し、管理者側では問い合わせ一覧表示、詳細モーダル、削除機能、ダミーデータシーディング、CSV エクスポートなどを実装しています。
 ユーザー管理には Laravel Fortify を使用しています。
-
+```
 ## 環境構築
 
 ### 1. リポジトリをクローン
-
+```
 cd coachtech/laravel
 git clone git@github.com:Estra-Coachtech/laravel-docker-template.git
 mv laravel-docker-template contact-form
-
+```
 ### リポジトリ URL
 
 https://github.com/yurinaniko/contact-form.git
@@ -50,41 +50,38 @@ http://localhost:8000
 
 Fortify を利用しているため、通常の Laravel のログインページからログインします。
 推奨：シーディングで管理ユーザーを登録
-
+```
 Seeder で admin ユーザーを作成している場合：
 メール: admin@example.com
 パスワード: password
-
+```
 ## 使用技術
-
+```
 - Laravel 8.83.x
 - PHP 8.1
 - MySQL 8.0.26
 - Docker (Laravel Sail)
 - Blade
 - CSS
-
----
+```
 
 ## ER 図
 
 ![ER図](src/public/images/contact-form-test.drawio.png)
 
 ## ページ一覧
-
-| 画面名               | URL              |
-| -------------------- | ---------------- |
-| お問い合わせフォーム | /contact         |
-| 確認ページ           | /contact/confirm |
-| サンクスページ       | /contact/thanks  |
-| 管理画面             | /admin           |
-| ログイン             | /login           |
-| ユーザー登録         | /register        |
-
----
-
+```
+| 画面名               | URL                |
+| -------------------- | ------------------ |
+| お問い合わせフォーム | /contact           |
+| 確認ページ           | /contact/confirm   |
+| サンクスページ       | /contact/thanks    |
+| 管理画面             | /admin             |
+| ログイン             | /login             |
+| ユーザー登録         | /register          |
+```
 ## ディレクトリ構成（主要部分）
-
+```
 src/
 ├── app/
 │ ├── Actions/
@@ -161,7 +158,7 @@ src/
 ├── docker-compose.yml
 ├── .env
 └── README.md
-
+```
 ## メモ
 
 - 動作確認済
@@ -212,22 +209,22 @@ src/
 font-family: 'Inika', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
 
 ### 注意点
-
+```
 - Docker は M4 Mac に対応済みの構成です
 
 - MySQL の初回起動後、接続エラーが出る場合は少し待つと安定します
 
 - php.ini の変更は docker/php.ini 内に記述
-
+```
 ### URL
-
+```
 - ユーザー画面： http://localhost:8000/
 
 - 管理者画面： http://localhost:8000/admin
   ※ 新規登録し、ログイン後に管理者画面表示されます
 
 - phpMyAdmin： http://localhost:8080/
-
+```
 ### 作者
 
 片山 優里奈
