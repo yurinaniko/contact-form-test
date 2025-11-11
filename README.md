@@ -1,7 +1,7 @@
 # お問い合わせフォーム（確認テスト）
 
 本アプリケーションは Laravel 8 を使用して構築したお問い合わせ管理システムです。
-ユーザー側ではお問い合わせフォーム、確認・サンクスページ、登録画面、ログイン機能を提供し、管理者側では問い合わせ一覧表示、詳細モーダル、削除機能、ダミーデータシーディング、CSVエクスポートなどを実装しています。
+ユーザー側ではお問い合わせフォーム、確認・サンクスページ、登録画面、ログイン機能を提供し、管理者側では問い合わせ一覧表示、詳細モーダル、削除機能、ダミーデータシーディング、CSV エクスポートなどを実装しています。
 ユーザー管理には Laravel Fortify を使用しています。
 
 ## 環境構築
@@ -13,6 +13,7 @@ git clone git@github.com:Estra-Coachtech/laravel-docker-template.git
 mv laravel-docker-template contact-form
 
 ### リポジトリ URL
+
 https://github.com/yurinaniko/contact-form.git
 
 ### 2. Docker の起動
@@ -40,6 +41,7 @@ php artisan key:generate
 php artisan migrate:fresh --seed
 
 ### 8. サーバーを確認
+
 ブラウザで以下へアクセス：
 
 http://localhost:8000
@@ -64,7 +66,8 @@ Seeder で admin ユーザーを作成している場合：
 
 ---
 
-## ER図
+## ER 図
+
 ![ER図](src/public/images/contact-form-test.drawio.png)
 
 ## ページ一覧
@@ -84,76 +87,76 @@ Seeder で admin ユーザーを作成している場合：
 
 src/
 ├── app/
-│   ├── Actions/
-│   │   └── Fortify/
-│   │       ├── CreateNewUser.php
-│   │       ├── LoginRequest.php
-│   │       └── RegisterRequest.php
-│   │
-│   ├── Http/
-│   │   ├── Controllers/
-│   │   │   ├── AdminController.php
-│   │   │   ├── FormController.php
-│   │   │   └── Auth/
-│   │   │       ├── LoginController.php
-│   │   │       └── RegisterController.php
-│   │   │
-│   │   └── Requests/
-│   │       ├── ContactRequest.php
-│   │       ├── LoginRequest.php
-│   │       └── RegisterRequest.php
-│   │
-│   ├── Models/
-│   │   ├── Category.php
-│   │   ├── Contact.php
-│   │   └── User.php
-│   │
-│   └── Providers/
-│       └── FortifyServiceProvider.php
+│ ├── Actions/
+│ │ └── Fortify/
+│ │ ├── CreateNewUser.php
+│ │ ├── LoginRequest.php
+│ │ └── RegisterRequest.php
+│ │
+│ ├── Http/
+│ │ ├── Controllers/
+│ │ │ ├── AdminController.php
+│ │ │ ├── FormController.php
+│ │ │ └── Auth/
+│ │ │ ├── LoginController.php
+│ │ │ └── RegisterController.php
+│ │ │
+│ │ └── Requests/
+│ │ ├── ContactRequest.php
+│ │ ├── LoginRequest.php
+│ │ └── RegisterRequest.php
+│ │
+│ ├── Models/
+│ │ ├── Category.php
+│ │ ├── Contact.php
+│ │ └── User.php
+│ │
+│ └── Providers/
+│ └── FortifyServiceProvider.php
 │
 ├── resources/
-│   ├── views/
-│   │   ├── contact/
-│   │   │   ├── index.blade.php
-│   │   │   ├── confirm.blade.php
-│   │   │   └── thanks.blade.php
-│   │   │
-│   │   ├── admin/
-│   │   │   └── index.blade.php
-│   │   │
-│   │   └── auth/
-│   │       ├── login.blade.php
-│   │       └── register.blade.php
-│   │
-│   └── css/
-│       ├── admin.css
-│       ├── app.css
-│       ├── confirm.css
-│       ├── index.css
-│       ├── login.css
-│       ├── register.css
-│       ├── sanitize.css
-│       └── thanks.css
+│ ├── views/
+│ │ ├── contact/
+│ │ │ ├── index.blade.php
+│ │ │ ├── confirm.blade.php
+│ │ │ └── thanks.blade.php
+│ │ │
+│ │ ├── admin/
+│ │ │ └── index.blade.php
+│ │ │
+│ │ └── auth/
+│ │ ├── login.blade.php
+│ │ └── register.blade.php
+│ │
+│ └── css/
+│ ├── admin.css
+│ ├── app.css
+│ ├── confirm.css
+│ ├── index.css
+│ ├── login.css
+│ ├── register.css
+│ ├── sanitize.css
+│ └── thanks.css
 │
 ├── public/
-│   └── images/
-│       └── contact-form-test.drawio.png
+│ └── images/
+│ └── contact-form-test.drawio.png
 │
 ├── database/
-│   ├── migrations/
-│   │   ├── 2014_10_12_create_users_table.php
-│   │   ├── 2025_11_04_create_categories_table.php
-│   │   └── 2025_11_05_create_contacts_table.php
-│   │
-│   ├── factories/
-│   │   └── ContactFactory.php
-│   │
-│   └── seeders/
-│       ├── CategorySeeder.php
-│       └── ContactSeeder.php
+│ ├── migrations/
+│ │ ├── 2014_10_12_create_users_table.php
+│ │ ├── 2025_11_04_create_categories_table.php
+│ │ └── 2025_11_05_create_contacts_table.php
+│ │
+│ ├── factories/
+│ │ └── ContactFactory.php
+│ │
+│ └── seeders/
+│ ├── CategorySeeder.php
+│ └── ContactSeeder.php
 │
 ├── routes/
-│   └── web.php
+│ └── web.php
 │
 ├── docker-compose.yml
 ├── .env
@@ -166,11 +169,12 @@ src/
 - フォーム送信 → 確認 → 完了の流れ OK
 - 管理画面検索・リセット OK
 - ログイン/ログアウト OK
-- CSVエクスポート OK
+- CSV エクスポート OK
 
 ## 機能一覧
 
 ### ユーザー側
+
 - お問い合わせフォーム -> 名前 / 性別 / メール / 電話番号 / 住所などの入力
 
 - バリデーションエラー表示
@@ -181,9 +185,9 @@ src/
 
 - サンクスページ表示
 
-
 ### 管理者側
-- 登録画面にてFortifyを使用し、管理画面にアクセスできる新規ユーザーを作成（名前、メールアドレス、パスワード入力）
+
+- 登録画面にて Fortify を使用し、管理画面にアクセスできる新規ユーザーを作成（名前、メールアドレス、パスワード入力）
 
 - ログイン画面 -> メールアドレス / パスワード入力
 
@@ -195,18 +199,20 @@ src/
 
 - リセット機能
 
-- ページネーション（7件ずつ）
+- ページネーション（7 件ずつ）
 
 - 詳細モーダル表示
 
 - 削除機能（モーダル内）
 
-- CSVエクスポート（動作確認済み）
+- CSV エクスポート（動作確認済み）
 
 ### 使用フォント
+
 font-family: 'Inika', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
 
 ### 注意点
+
 - Docker は M4 Mac に対応済みの構成です
 
 - MySQL の初回起動後、接続エラーが出る場合は少し待つと安定します
@@ -214,6 +220,7 @@ font-family: 'Inika', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans
 - php.ini の変更は docker/php.ini 内に記述
 
 ### URL
+
 - ユーザー画面： http://localhost:8000/
 
 - 管理者画面： http://localhost:8000/admin
@@ -222,4 +229,5 @@ font-family: 'Inika', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans
 - phpMyAdmin： http://localhost:8080/
 
 ### 作者
+
 片山 優里奈

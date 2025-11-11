@@ -1,0 +1,66 @@
+.header {
+    background-color: #ffffff;
+    /* ← 白背景でOK */
+    border-bottom: 1px solid #e5ddd3;
+    height: 90px;
+    position: relative;
+}
+
+.header__inner {
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Inika', serif;
+    font-size: 28px;
+    color: #8b7969;
+    letter-spacing: 0.03em;
+}
+
+/* =========================
+    Navigation（register）
+========================= */
+.nav {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.nav-btn {
+    display: inline-block;
+    text-decoration: none;
+    border: 1px solid #D9C6B5;
+    border-radius: 4px;
+    background-color: #f2f2f2;
+    color: #8b7969;
+    font-size: 14px;
+    padding: 5px 16px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    opacity: 0.8;
+}
+
+/* =========================
+    Utility
+========================= */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.text-center {
+    text-align: center;
+}

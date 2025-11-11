@@ -1,0 +1,56 @@
+.thanks__content {
+    position: relative;
+    text-align: center;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Inika', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+    color: #4a3a2f;
+    overflow: hidden;
+}
+
+.thanks__message p {
+    font-size: 20px;
+    margin-bottom: 80px;
+    color: #8b7969;
+    letter-spacing: 0.05em;
+}
+
+.thanks__button a {
+    display: inline-block;
+    background-color: #8b7969;
+    color: #fff;
+    padding: 12px 60px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    font-family: 'Inika', serif;
+    transition: 0.3s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.thanks__button a:hover {
+    background-color: #a48b79;
+    transform: translateY(-2px);
+}
+
+.thanks__background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 120px;
+    z-index: -1;
+}
+.thanks__background span {
+    font-family: 'Inika', serif;
+    font-size: 260px;
+    color: rgba(139, 121, 105, 0.05);
+    line-height: 1;
+    user-select: none;
+    pointer-events: none;
+    white-space: nowrap;
+}

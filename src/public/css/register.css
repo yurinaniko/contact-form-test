@@ -1,0 +1,138 @@
+body {
+    background-color: #f8f6f4;
+    font-family: 'Inika', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+    color: #4a3a2f;
+}
+
+.contact-form__content {
+    margin: 0 auto;
+    padding: 10px 15px 10px;
+    max-width: 1000px;
+    font-family: 'Inika', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+    color: #4a3a2f;
+}
+
+.contact-form__heading {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.contact-form__heading h2 {
+    font-size: 26px;
+    color: #8b7969;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
+.register-container {
+    height: 500px;
+    background-color: #fff;
+    width: 500px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #8b7969;
+    font-size: 16px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #c5b9b0;
+    border-radius: 4px;
+    font-size: 15px;
+    box-sizing: border-box;
+    background-color: #f2f2f2;
+    color: #4a3a2f;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none !important;
+    border: 1px solid #8b6e4b !important;
+    box-shadow: 0 0 0 2px rgba(139, 110, 75, 0.3) !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    box-shadow: 0 0 0 1000px #f2f2f2 inset !important;
+    -webkit-text-fill-color: #4a3a2f !important;
+    border: 1px solid #c5b9b0 !important;
+}
+
+input:-webkit-autofill {
+    border: 1px solid #c5b9b0 !important;
+    -webkit-box-shadow: 0 0 0px 1000px #f2f2f2 inset !important;
+}
+
+/* フォーカス時の青色を完全OFF */
+input:focus {
+    background-color: #f2f2f2 !important;
+    border: 1px solid #8b6e4b !important;
+    box-shadow: 0 0 0 2px rgba(139, 110, 75, 0.3) !important;
+}
+
+input:focus-visible {
+    outline: none !important;
+}
+
+/* placeholder の色（薄く） */
+input::placeholder {
+    color: #b6a696;
+}
+
+.register-btn {
+    display: block;
+    width: 160px;
+    height: 46px;
+    margin: 60px auto;
+    background-color: #8b7969;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 16px;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.register-btn:hover {
+    background-color: #a28c7b;
+}
+
+.error-message {
+    color: #c00;
+    font-size: 14px;
+    margin-top: 5px;
+    height: 15px;
+}
+
+.link-area {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.link-area a {
+    color: #8b7969;
+    text-decoration: none;
+}
+
+.link-area a:hover {
+    text-decoration: underline;
+}
