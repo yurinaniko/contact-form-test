@@ -10,11 +10,11 @@
 ```
 cd coachtech/laravel
 git clone git@github.com:Estra-Coachtech/laravel-docker-template.git
-mv laravel-docker-template contact-form
+mv laravel-docker-template contact-form-test
 ```
 ### リポジトリ URL
 
-https://github.com/yurinaniko/contact-form.git
+https://github.com/yurinaniko/contact-form-test.git
 
 ### 2. Docker の起動
 
