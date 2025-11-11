@@ -1,0 +1,221 @@
+.contact-form__content {
+    margin: 0 auto;
+    padding: 0 auto;
+    max-width: 1000px;
+    font-family: 'Inika', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+    color: #4a3a2f;
+}
+
+/* ===== 見出し ===== */
+.contact-form__heading {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.contact-form__heading h2 {
+    font-size: 24px;
+    color: #8b7969;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
+/* ===== フォーム全体 ===== */
+.form {
+    margin: 0 auto;
+    width: 75%;
+    text-align: left;
+}
+
+/* ===== 各フォーム行 ===== */
+.form__group {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+
+.form__group-title {
+    width: 160px;
+    margin-right: 10px;
+    font-size: 15px;
+    color: #8b7969;
+}
+
+.form__group-content {
+    width: 80%;
+    margin-left: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* ===== 必須マーク ===== */
+.form__label--required {
+    margin-left: 5px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    background: #fafafa;
+    color: #c00;
+    font-size: 13px;
+}
+
+/* ===== 名前入力欄 ===== */
+.form__input--name {
+    display: flex;
+    gap: 15px;
+}
+
+.form__input--name div {
+    flex: 1;
+}
+
+.form__input--name input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    color: #4a3a2f;
+    font-size: 15px;
+}
+
+/* ===== 通常入力欄 ===== */
+.form__input--text input,
+.form__input--tel input,
+.form__input--textarea textarea,
+.form__input--select select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    color: #4a3a2f;
+    font-size: 14px;
+}
+
+/* ===== プレースホルダー ===== */
+::placeholder {
+    color: #aaa;
+}
+
+/* ===== 性別ラジオボタン ===== */
+.form__input--gender {
+    display: flex;
+    gap: 40px;
+}
+
+.form__input--gender label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #8b7969;
+    cursor: pointer;
+}
+
+.form__input--gender input[type="radio"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #8b7969;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: #fff;
+    transition: all 0.2s ease;
+}
+
+.form__input--gender input[type="radio"]:checked {
+    background-color: #82756A;
+    border-color: #82756A;
+}
+
+.form__input--gender input[type="radio"]:hover {
+    box-shadow: 0 0 5px rgba(130, 117, 106, 0.4);
+}
+
+/* ===== 電話番号欄 ===== */
+.form__input--tel {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.form__input--tel input {
+    flex: 1;
+}
+
+/* ===== セレクトボックス ===== */
+.form__input--select select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%238b7969' height='10' width='10' xmlns='http://www.w3.org/2000/svg'><polygon points='0,0 10,0 5,5'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+    color: #aaa;
+}
+
+/* 選択後の文字色 */
+.form__input--select select:not([value=""]) {
+    color: #8b6e4b;
+}
+
+/* ===== テキストエリア ===== */
+.form__input--textarea textarea {
+    height: 120px;
+    resize: none;
+}
+
+/* ===== エラー表示 ===== */
+.error-message {
+    color: #ff0000;
+    font-size: 14px;
+    line-height: 16px;
+    padding: 0 auto;
+}
+
+/* ===== 送信ボタン ===== */
+.form__button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.form__button-submit {
+    padding: 10px 30px;
+    margin-bottom: 15px;
+    background: #8b7969;
+    color: #fff;
+    font-size: 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.form__button-submit:hover {
+    background: #a18b78;
+}
+
+/* ===== 入力欄の背景色統一 ===== */
+input,
+textarea,
+select {
+    background-color: #f8f8f8;
+    color: #8b6e4b;
+}
+
+/* フォーカス時も背景色変わらない */
+input:focus,
+textarea:focus,
+select:focus {
+    background-color: #f8f8f8;
+    outline: none;
+    box-shadow: none;
+}
+
+/* ===== Chrome/Safariオートフィル対策 ===== */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #f8f8f8 inset !important;
+    background-color: #f8f8f8 !important;
+    color: #8b6e4b !important;
+}

@@ -1,0 +1,111 @@
+main {
+    padding: 20px;
+    min-height: 80vh;
+    background-color: #ffffff;
+}
+.confirm__content {
+    margin: 0 auto;
+    padding: 10px 15px 60px;
+    max-width: 900px;
+    font-family: 'Inika', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+    color: #8B7969;
+    line-height: 1.6;
+}
+
+.contact-form__heading {
+    margin-top: -5px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.confirm__heading h2 {
+    font-size: 28px;
+    color: #8b7969;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
+.confirm__title {
+    font-size: 28px;
+    color: #8b7969;
+    margin-bottom: 40px;
+}
+
+.form__table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto 40px;
+    border: 1px solid #E0DFDE;
+}
+
+.form__table th,
+.form__table td {
+    border: 1px solid #E0DFDE;
+    padding: 14px 20px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 15px;
+}
+.form__table th {
+    width: 30%;
+    background-color: #8B7969;
+    color: #fff;
+    font-weight: 500;
+}
+
+.form__table td {
+    width: 70%;
+    background-color: #fff;
+    color: #4a3a2f;
+    word-break: break-word;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #8b6e4b;
+    box-shadow: 0 0 0 2px rgba(139, 110, 75, 0.3);
+}
+
+.form__buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+}
+
+.form__btn--brown,
+.form__btn--gray {
+    width: 160px;
+    height: 46px;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: 0.2s;
+}
+
+.form__btn--brown {
+    background-color: #8B7969;
+    color: #fff;
+    border: none;
+}
+
+.form__btn--brown:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.form__btn--gray {
+    background-color: #fff;
+    color: #8B7969;
+    border: 1px solid #8B7969;
+}
+
+.form__btn--gray:hover {
+    background-color: #f9f7f6;
+    transform: translateY(-1px);
+}
+

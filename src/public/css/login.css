@@ -1,0 +1,142 @@
+body {
+    background-color: #f8f6f4;
+    font-family: 'Inika', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+    color: #4a3a2f;
+}
+
+.contact-form__content {
+    margin: 0 auto;
+    padding: 10px 15px 10px;
+    max-width: 1000px;
+    font-family: 'Inika', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+    color: #4a3a2f;
+}
+
+.contact-form__heading {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.contact-form__heading h2 {
+    font-size: 26px;
+    color: #8b7969;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+}
+
+/* コンテナ */
+.login-container {
+    background-color: #fff;
+    border: 1px solid #c5b9b0;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    max-width: 450px;
+    padding: 50px 60px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* タイトル */
+.login-title {
+    font-size: 26px;
+    color: #8b7969;
+    font-weight: 400;
+    margin-bottom: 40px;
+    letter-spacing: 0.03em;
+}
+
+/* =========================
+    フォームエリア
+========================= */
+.form-group {
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #8b7969;
+}
+
+/* 入力フィールド */
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #c5b9b0;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #c5b9b0;
+    background-color: #f2f2f2;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #8b6e4b !important;
+    box-shadow: 0 0 0 2px rgba(139, 110, 75, 0.3) !important;
+}
+
+/* 入力欄の文字色統一 */
+input {
+    color: #3a2d20 !important;
+}
+
+/* placeholder の色（薄く） */
+input::placeholder {
+    color: #b6a696;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+    box-shadow: 0 0 0 1000px #f2f2f2 inset !important;
+    -webkit-text-fill-color: #4a3a2f !important;
+    border: 1px solid #c5b9b0 !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* =========================
+    エラー・ステータス表示
+========================= */
+.error-message {
+    margin-top: 6px;
+    color: #e74c3c;
+    font-size: 13px;
+}
+
+.status-message {
+    color: #8b7969;
+    background-color: #f3ede7;
+    border: 1px solid #d8cfc7;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* =========================
+    ボタン
+========================= */
+.button-area {
+    text-align: center;
+}
+
+.login-btn {
+    background-color: #8b7969;
+    border: none;
+    color: #fff;
+    font-size: 15px;
+    padding: 10px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 30px;
+}
+
+.login-btn:hover {
+    opacity: 0.8;
+}
