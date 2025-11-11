@@ -1,38 +1,63 @@
 # お問い合わせフォーム（確認テスト）
 
 本アプリケーションは Laravel 8 を使用して構築したお問い合わせ管理システムです。
-フォーム送信、確認画面、サンクスページ、管理画面、検索機能、ページネーション、
-ユーザー認証（Fortify）、ダミーデータシーディングなどが含まれています。
+ユーザー側ではお問い合わせフォーム、確認・サンクスページ、登録画面、ログイン機能を提供し、管理者側では問い合わせ一覧表示、詳細モーダル、削除機能、ダミーデータシーディング、CSVエクスポートなどを実装しています。
+ユーザー管理には Laravel Fortify を使用しています。
 
-## 環境構築手順
+## 環境構築
 
-### Docker の起動
+### 1. リポジトリをクローン
+
+cd coachtech/laravel
+git clone git@github.com:Estra-Coachtech/laravel-docker-template.git
+mv laravel-docker-template contact-form
+
+### リポジトリ URL
+https://github.com/yurinaniko/contact-form.git
+
+### 2. Docker の起動
 
 docker compose up -d --build
 
-### コンテナへ入る
+### 3. コンテナへ入る
 
 docker compose exec php bash
 
-### Composer インストール
+### 4. Composer インストール
 
 composer install
 
-### .env 設定
+### 5. .env 設定
 
-`.env.example` をコピーして `.env` を作成
-cp .env.example .env
+`.env.example` を `.env` としてコピーします：
+
+### 6. APP_KEY の生成
+
 php artisan key:generate
 
-### マイグレーション & シーディング
+### 7. マイグレーション & シーディング
 
 php artisan migrate:fresh --seed
 
+### 8. サーバーを確認
+ブラウザで以下へアクセス：
+
+http://localhost:8000
+
+### 管理画面ログイン方法
+
+Fortify を利用しているため、通常の Laravel のログインページからログインします。
+推奨：シーディングで管理ユーザーを登録
+
+Seeder で admin ユーザーを作成している場合：
+メール: admin@example.com
+パスワード: password
+
 ## 使用技術
 
-- Laravel 8.x
-- PHP 8.x
-- MySQL
+- Laravel 8.83.x
+- PHP 8.1
+- MySQL 8.0.26
 - Docker (Laravel Sail)
 - Blade
 - CSS
@@ -41,6 +66,7 @@ php artisan migrate:fresh --seed
 
 ## ER図
 ![ER図](src/public/images/contact-form-test.drawio.png)
+
 ## ページ一覧
 
 | 画面名               | URL              |
@@ -144,13 +170,56 @@ src/
 
 ## 機能一覧
 
-- お問い合わせフォーム（バリデーションあり）
-- 確認画面 → サンクスページの流れ
+### ユーザー側
+- お問い合わせフォーム -> 名前 / 性別 / メール / 電話番号 / 住所などの入力
+
+- バリデーションエラー表示
+
+- 確認画面（送信または修正ボタンクリック）
+  修正->お問い合わせフォームに戻る
+  送信->サンクスページに遷移
+
+- サンクスページ表示
+
+
+### 管理者側
+- 登録画面にてFortifyを使用し、管理画面にアクセスできる新規ユーザーを作成（名前、メールアドレス、パスワード入力）
+
+- ログイン画面 -> メールアドレス / パスワード入力
+
 - 管理画面（ログイン必須）
+
 - 検索機能（名前/メール/性別/種類/日付）
+
 - 検索結果の保持
+
 - リセット機能
+
 - ページネーション（7件ずつ）
+
 - 詳細モーダル表示
+
 - 削除機能（モーダル内）
-- CSVエクスポート（応用機能）
+
+- CSVエクスポート（動作確認済み）
+
+### 使用フォント
+font-family: 'Inika', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
+
+### 注意点
+- Docker は M4 Mac に対応済みの構成です
+
+- MySQL の初回起動後、接続エラーが出る場合は少し待つと安定します
+
+- php.ini の変更は docker/php.ini 内に記述
+
+### URL
+- ユーザー画面： http://localhost:8000/
+
+- 管理者画面： http://localhost:8000/admin
+  ※ 新規登録し、ログイン後に管理者画面表示されます
+
+- phpMyAdmin： http://localhost:8080/
+
+### 作者
+片山 優里奈
