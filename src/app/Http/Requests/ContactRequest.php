@@ -34,7 +34,7 @@ class ContactRequest extends FormRequest
             'address' => 'required',
             'building' => 'nullable',
             'category_id' => 'required',
-            'detail' => 'required|max:120',
+            'detail' => ['required', 'max:120'],
         ];
     }
     public function messages()

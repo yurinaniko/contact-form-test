@@ -15,7 +15,7 @@
         <table class="form__table">
             <tr>
                 <th>お名前</th>
-                <td>{{ $inputs['last_name'] }} {{ $inputs['first_name'] }}</td>
+                <td>{{ $inputs['first_name'] }} {{ $inputs['last_name'] }}</td>
             </tr>
             <tr>
                 <th>性別</th>

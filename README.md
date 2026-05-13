@@ -8,14 +8,9 @@
 
 ### 1. リポジトリをクローン
 ```
-cd coachtech/laravel
-git clone git@github.com:Estra-Coachtech/laravel-docker-template.git
-mv laravel-docker-template contact-form-test
+git clone https://github.com/yurinaniko/contact-form-test.git
+cd contact-form-test
 ```
-### リポジトリ URL
-
-https://github.com/yurinaniko/contact-form-test.git
-
 ### 2. Docker の起動
 
 docker compose up -d --build
@@ -208,13 +203,20 @@ src/
 
 font-family: 'Inika', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
 
-### 注意点
+### 備考
 ```
-- Docker は M4 Mac に対応済みの構成です
+## Apple Silicon(M1/M2/M3/M4) Macについて
 
-- MySQL の初回起動後、接続エラーが出る場合は少し待つと安定します
+Apple Silicon環境では、DockerイメージのCPUアーキテクチャ互換性により
+`no matching manifest for linux/amd64 in the manifest list entries`
+エラーが発生する場合があります。
 
-- php.ini の変更は docker/php.ini 内に記述
+本アプリでは以下の対応を行っています。
+
+- MySQL に `platform: linux/x86_64` を指定
+- phpMyAdmin は `arm64v8/phpmyadmin:latest` を使用
+
+これにより Apple Silicon Mac 環境でも動作可能です。
 ```
 ### URL
 ```
@@ -225,6 +227,4 @@ font-family: 'Inika', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans
 
 - phpMyAdmin： http://localhost:8080/
 ```
-### 作者
 
-片山 優里奈

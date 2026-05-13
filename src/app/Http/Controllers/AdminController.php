@@ -44,7 +44,6 @@ class AdminController extends Controller
             $query->where('gender', $request->gender);
         }
 
-
         if ($request->filled('category_id')) {
             $query->where('category_id', $request->category_id);
         }

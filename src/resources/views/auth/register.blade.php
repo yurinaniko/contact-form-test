@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="register-container">
-        <form method="POST" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}" novalidate>
         @csrf
             <div class="form-group">
                 <label for="name">お名前</label>
