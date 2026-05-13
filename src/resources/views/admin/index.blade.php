@@ -14,7 +14,7 @@
         <form action="{{ route('admin.search') }}" method="GET" class="search-form">
             <input type="text" name="keyword" placeholder="名前やメールアドレスを入力してください">
             <select name="gender">
-                <option value="">性別</option>
+                <option value="">全て</option>
                 <option value="1">男性</option>
                 <option value="2">女性</option>
                 <option value="3">その他</option>
@@ -32,7 +32,7 @@
                             <td colspan="5">検索結果がありません</td>
                         </tr>
                     @endif
-                <button type="reset" class="reset-btn">リセット</button>
+                <a href="{{ route('admin.index') }}" class="reset-btn">リセット</a>
         </form>
         <div class="export-pagination">
             <a href="{{ route('admin.export') }}" class="export-btn">エクスポート</a>

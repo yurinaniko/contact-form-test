@@ -11,7 +11,8 @@
         <h2>Contact</h2>
     </div>
 
-    <form class="form" action="{{ route('contact.confirm') }}" method="post">
+    <form class="form" action="{{ route('contact.confirm') }}" method="post" novalidate>
+        @csrf>
         @csrf
 
         {{-- お名前 --}}
@@ -23,7 +24,7 @@
             <div class="form__group-content">
                 <div class="form__input--name">
                     <div class="form__input--last">
-                        <input type="text" name="last_name" placeholder="例：田中" value="{{ old('last_name') }}">
+                        <input type="text" name="first_name" placeholder="例：田中" value="{{ old('first_name') }}">
                             <div class="form__error">
                             @error('last_name')
                                 <p class="error-message">{{ $message }}</p>
@@ -31,9 +32,9 @@
                             </div>
                     </div>
                     <div class="form__input--first">
-                        <input type="text" name="first_name" placeholder="例：太郎" value="{{ old('first_name') }}">
+                        <input type="text" name="last_name" placeholder="例：太郎" value="{{ old('last_name') }}">
                             <div class="form__error">
-                            @error('first_name')
+                            @error('last_name')
                                 <p class="error-message">{{ $message }}</p>
                             @enderror
                             </div>
