@@ -107,7 +107,6 @@ button:focus {
 }
 
 .search-btn,
-.reset-btn,
 .export-btn {
     height: 40px;
     text-align: center;
@@ -284,6 +283,16 @@ tr:hover {
 }
 
 .reset-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+
     background-color: #D9C6B5;
     color: #fff;
     border: 1px solid #D9C6B5;
