@@ -7,6 +7,8 @@ use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
+    use RefreshDatabase;
+
     /** @test */
     public function トップページはお問い合わせフォームへリダイレクトする()
     {
