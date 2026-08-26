@@ -7,15 +7,15 @@ use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function test_example()
+    /** @test */
+    public function トップページはお問い合わせフォームへリダイレクトする()
     {
-        $response = $this->get('/');
+        $this->get('/')->assertRedirect('/contact');
+    }
 
-        $response->assertStatus(200);
+    /** @test */
+    public function お問い合わせフォームが表示できる()
+    {
+        $this->get('/contact')->assertStatus(200);
     }
 }
