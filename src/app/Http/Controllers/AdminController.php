@@ -23,23 +23,39 @@ class AdminController extends Controller
         return view('admin.index', compact('contacts', 'categories'));
     }
 
-        public function search(Request $request)
+    public function search(Request $request)
     {
-        $query = Contact::query();
+        $contacts = $this->applyFilters($request)
+            ->orderBy('created_at', 'desc')
+            ->paginate(7)
+            ->appends($request->query());   // 2ページ目以降にも検索条件を引き継ぐ
+
+        $categories = Category::all();
+
+        return view('admin.index', compact('contacts', 'categories'));
+    }
+
+    /**
+     * 検索条件を1箇所にまとめる。
+     * 一覧とCSV出力で同じ条件を使うため、片方だけ直して食い違う事故を防ぐ。
+     */
+    private function applyFilters(Request $request)
+    {
         $query = Contact::with('category');
 
         if ($request->filled('keyword')) {
-        $keyword = trim(mb_convert_kana($request->keyword, 's'));
-        $escaped = addcslashes($keyword, '%_');
+            $keyword = trim(mb_convert_kana($request->keyword, 's'));
+            $escaped = addcslashes($keyword, '%_');
 
-        $query->where(function ($q) use ($escaped) {
-        $q->where('first_name', 'like', "%{$escaped}%")
-            ->orWhere('last_name',  'like', "%{$escaped}%")
-            ->orWhere('email',      'like', "%{$escaped}%")
-            ->orWhere(DB::raw("REPLACE(CONCAT(last_name, first_name), ' ', '')"), 'like', "%".str_replace(' ', '', $escaped)."%")
-            ->orWhere(DB::raw("CONCAT(last_name, ' ', first_name)"), 'like', "%{$escaped}%");
-        });
+            $query->where(function ($q) use ($escaped) {
+                $q->where('first_name', 'like', "%{$escaped}%")
+                    ->orWhere('last_name',  'like', "%{$escaped}%")
+                    ->orWhere('email',      'like', "%{$escaped}%")
+                    ->orWhere(DB::raw("REPLACE(CONCAT(last_name, first_name), ' ', '')"), 'like', "%".str_replace(' ', '', $escaped)."%")
+                    ->orWhere(DB::raw("CONCAT(last_name, ' ', first_name)"), 'like', "%{$escaped}%");
+            });
         }
+
         if ($request->filled('gender')) {
             $query->where('gender', $request->gender);
         }
@@ -52,13 +68,7 @@ class AdminController extends Controller
             $query->whereDate('created_at', $request->date);
         }
 
-        $contacts = $query->paginate(7);
-
-
-        $categories = Category::all();
-
-
-        return view('admin.index', compact('contacts', 'categories'));
+        return $query;
     }
 
     public function destroy($id)
@@ -66,12 +76,16 @@ class AdminController extends Controller
         Contact::findOrFail($id)->delete();
         return redirect()->route('admin.index')->with('success', '削除しました');
     }
-    public function export()
+    public function export(Request $request)
 {
-    $contacts = Contact::with('category')->orderBy('created_at', 'desc')->get();
+    // 一覧と同じ絞り込みを適用する（検索結果をそのまま出力できるようにする）
+    $contacts = $this->applyFilters($request)->orderBy('created_at', 'desc')->get();
 
     $response = new StreamedResponse(function () use ($contacts) {
         $handle = fopen('php://output', 'w');
+
+        // ExcelでUTF-8と認識させるためのBOM。無いと日本語が文字化けする。
+        fwrite($handle, "\xEF\xBB\xBF");
 
         // ヘッダー行
         fputcsv($handle, [
@@ -103,7 +117,7 @@ class AdminController extends Controller
         fclose($handle);
     });
 
-    $response->headers->set('Content-Type', 'text/csv');
+    $response->headers->set('Content-Type', 'text/csv; charset=UTF-8');
     $response->headers->set('Content-Disposition', 'attachment; filename="contacts.csv"');
 
     return $response;
