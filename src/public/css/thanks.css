@@ -54,3 +54,20 @@
     pointer-events: none;
     white-space: nowrap;
 }
+/* =========================
+   レスポンシブ（タブレット・スマホ）
+========================= */
+@media (max-width: 768px) {
+    .thanks__message p {
+        font-size: 18px;
+        margin-bottom: 50px;
+        padding: 0 16px;
+    }
+    .thanks__button a {
+        padding: 12px 40px;
+        font-size: 15px;
+    }
+    .thanks__background span {
+        font-size: 120px;
+    }
+}

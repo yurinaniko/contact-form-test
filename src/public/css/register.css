@@ -136,3 +136,19 @@ input::placeholder {
 .link-area a:hover {
     text-decoration: underline;
 }
+/* =========================
+   レスポンシブ（スマホ）
+========================= */
+@media (max-width: 560px) {
+    .register-container {
+        width: 90%;
+        height: auto;
+        padding: 30px 24px;
+    }
+    .register-btn {
+        margin: 40px auto;
+    }
+    .form-group {
+        margin-bottom: 22px;
+    }
+}
