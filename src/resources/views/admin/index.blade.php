@@ -35,7 +35,8 @@
                 <a href="{{ route('admin.index') }}" class="reset-btn">リセット</a>
         </form>
         <div class="export-pagination">
-            <a href="{{ route('admin.export') }}" class="export-btn">エクスポート</a>
+            {{-- 現在の検索条件をそのまま渡し、絞り込んだ結果を出力できるようにする --}}
+            <a href="{{ route('admin.export', request()->query()) }}" class="export-btn">エクスポート</a>
             <div class="pagination">
             {{ $contacts->links('pagination::bootstrap-4') }}
             </div>
