@@ -425,3 +425,82 @@ details.modal .delete-btn:hover {
         transform: scale(1);
     }
 }
+/* =========================
+   レスポンシブ（タブレット・スマホ）
+========================= */
+/* 検索フォーム・エクスポート行・テーブルを「同じ幅・同じ左右端」で中央揃えにし、
+   画面幅の変化に対して3つが一緒に伸縮するようにする。
+   （元は search=ほぼ全幅 / export=80% / table=65% とバラバラだった） */
+.admin-area {
+    padding: 0;
+}
+/* body直下で幅の基準になるのは search-area と table-wrapper の2つ。
+   同じ幅・最大幅・中央揃えにして一緒に伸縮させる */
+.search-area,
+.table-wrapper {
+    width: 90%;
+    max-width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+/* export-pagination は search-area の内側なので、親を100%満たせば
+   自動的に search-area と同じ幅・同じ左右端になる（二重縮小を防ぐ） */
+.export-pagination {
+    width: 100%;
+    box-sizing: border-box;
+}
+/* テーブルは横スクロールで崩さない */
+.table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+.table-wrapper table {
+    width: 100%;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    /* 基準の2要素の左右余白を詰めて表示領域を広げる（export-paginationは
+       search-areaの内側なので100%のままで自動追従） */
+    .search-area,
+    .table-wrapper {
+        width: 94%;
+    }
+    /* 検索フォームを折り返して縦積みに */
+    .search-form {
+        flex-wrap: wrap;
+        justify-content: stretch;
+    }
+    .search-form input[name="keyword"],
+    .search-form select[name="gender"],
+    .search-form select[name="category_id"],
+    .search-form input[type="date"] {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .search-btn,
+    .reset-btn {
+        flex: 1;
+    }
+    /* エクスポートとページネーションを縦に */
+    .export-pagination {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    .pagination {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    /* テーブルは最小幅を確保して横スクロール */
+    .table-wrapper table {
+        min-width: 560px;
+    }
+    /* 詳細モーダルを画面幅に収める */
+    .modal-content {
+        width: 90%;
+        max-width: 420px;
+        padding: 30px 24px;
+    }
+}

@@ -140,3 +140,20 @@ input:-webkit-autofill:focus {
 .login-btn:hover {
     opacity: 0.8;
 }
+
+/* =========================
+   レスポンシブ（スマホ）
+========================= */
+@media (max-width: 480px) {
+    .login-container {
+        max-width: 90%;
+        padding: 40px 24px;
+    }
+    .login-title {
+        font-size: 22px;
+        margin-bottom: 30px;
+    }
+    .form-group {
+        margin-bottom: 28px;
+    }
+}

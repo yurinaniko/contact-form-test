@@ -64,3 +64,34 @@
 .text-center {
     text-align: center;
 }
+/* =========================
+   レスポンシブ（タブレット・スマホ）
+========================= */
+@media (max-width: 768px) {
+    .header {
+        height: auto;
+        padding: 12px 0;
+    }
+    /* blade側は class="header_inner"（アンダースコア1つ）。実在するクラス名に合わせる */
+    .header_inner {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+    .logo {
+        position: static;
+        left: auto;
+        transform: none;
+        font-size: 24px;
+    }
+    .nav {
+        position: static;
+        right: auto;
+        top: auto;
+        transform: none;
+    }
+    .container {
+        padding: 0 16px;
+    }
+}
