@@ -54,3 +54,26 @@
     pointer-events: none;
     white-space: nowrap;
 }
+/* =========================
+   レスポンシブ（タブレット・スマホ）
+========================= */
+@media (max-width: 768px) {
+    .thanks__message p {
+        font-size: 18px;
+        margin-bottom: 50px;
+        padding: 0 16px;
+    }
+    .thanks__button a {
+        padding: 12px 40px;
+        font-size: 15px;
+    }
+    /* 背景の "Thank you" を画面幅に追従させ、スマホでも全文字が収まるようにする。
+       固定pxだと画面幅を超えて左右が切れてしまうため vw を使う。 */
+    .thanks__background {
+        width: 100%;
+        text-align: center;
+    }
+    .thanks__background span {
+        font-size: 20vw;
+    }
+}

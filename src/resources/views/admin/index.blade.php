@@ -43,6 +43,7 @@
         </div>
     </div>
 </div>
+<div class="table-wrapper">
 <table>
     <thead>
         <tr>
@@ -101,4 +102,5 @@
         @endforeach
     </tbody>
 </table>
+</div>
 @endsection

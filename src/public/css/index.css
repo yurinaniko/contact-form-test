@@ -219,3 +219,43 @@ select:-webkit-autofill {
     background-color: #f8f8f8 !important;
     color: #8b6e4b !important;
 }
+/* =========================
+   レスポンシブ（タブレット・スマホ）
+========================= */
+@media (max-width: 768px) {
+    .form {
+        width: 100%;
+        padding: 0 16px;
+        box-sizing: border-box;
+    }
+    /* ラベルと入力欄を縦積みに */
+    .form__group {
+        flex-direction: column;
+    }
+    .form__group-title {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 6px;
+    }
+    .form__group-content {
+        width: 100%;
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .form__input--name {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .form__input--gender {
+        gap: 18px;
+        flex-wrap: wrap;
+    }
+    .form__input--tel {
+        gap: 6px;
+    }
+    .contact-form__heading h2 {
+        font-size: 20px;
+    }
+}

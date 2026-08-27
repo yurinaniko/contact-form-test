@@ -109,3 +109,31 @@ textarea:focus {
     transform: translateY(-1px);
 }
 
+
+/* =========================
+   レスポンシブ（タブレット・スマホ）
+========================= */
+@media (max-width: 768px) {
+    .confirm__content {
+        padding: 10px 16px 40px;
+    }
+    .form__table th,
+    .form__table td {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .form__buttons {
+        flex-direction: column;
+        gap: 14px;
+    }
+    .form__btn--brown,
+    .form__btn--gray {
+        width: 100%;
+    }
+    .confirm__title {
+        font-size: 22px;
+    }
+}
