@@ -104,4 +104,27 @@ class AdminExportTest extends TestCase
             ->assertOk()
             ->assertSee('keyword=%E5%B1%B1%E7%94%B0', false);
     }
+
+    /** @test */
+    public function CSVインジェクションになる値はクォートで無害化される()
+    {
+        $category = Category::forceCreate(['content' => '商品の交換について']);
+        Contact::forceCreate([
+            'category_id' => $category->id,
+            'last_name' => '=1+1', 'first_name' => '太郎',
+            'gender' => 1, 'email' => 'evil@example.com',
+            'tel' => '080-0000-0000', 'address' => '東京都',
+            'building' => null, 'detail' => '@SUM(A1:A2)',
+        ]);
+
+        $csv = $this->actingAs(User::factory()->create())
+            ->get('/admin/export')
+            ->streamedContent();
+
+        // 数式として実行されうるセルは先頭にシングルクォートが付く
+        $this->assertStringContainsString("'=1+1", $csv);
+        $this->assertStringContainsString("'@SUM(A1:A2)", $csv);
+        // 生の "=1+1" 始まりのセルは存在しない
+        $this->assertStringNotContainsString(',=1+1', $csv);
+    }
 }
