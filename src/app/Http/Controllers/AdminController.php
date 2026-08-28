@@ -16,6 +16,20 @@ class AdminController extends Controller
     $this->middleware('auth');
     }
 
+    /**
+     * CSVインジェクション対策。
+     * Excel等の表計算ソフトは = + - @ や制御文字(TAB/CR)で始まるセルを数式として実行しうるため、
+     * 該当する値の先頭にシングルクォートを付けて無害化する（表示上は元の文字列のまま）。
+     */
+    private function csvSafe($value): string
+    {
+        $value = (string) $value;
+        if ($value !== '' && in_array($value[0], ['=', '+', '-', '@', "\t", "\r"], true)) {
+            return "'" . $value;
+        }
+        return $value;
+    }
+
     public function index()
     {
         $contacts = Contact::with('category')->paginate(7);
@@ -101,7 +115,7 @@ class AdminController extends Controller
         ]);
 
         foreach ($contacts as $contact) {
-            fputcsv($handle, [
+            fputcsv($handle, array_map([$this, 'csvSafe'], [
                 $contact->last_name . ' ' . $contact->first_name,
                 $contact->gender,
                 $contact->email,
@@ -111,7 +125,7 @@ class AdminController extends Controller
                 $contact->category->content ?? '',
                 $contact->detail,
                 $contact->created_at->format('Y-m-d'),
-            ]);
+            ]));
         }
 
         fclose($handle);
