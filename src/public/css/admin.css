@@ -57,8 +57,9 @@ button:focus {
 }
 
 .search-area {
-    width: 100%;
-    max-width: 1170px;
+    /* 下の表(.table-wrapper)と左右端を揃えるため同じ幅・中央寄せにする */
+    width: 90%;
+    max-width: 1180px;
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -68,16 +69,17 @@ button:focus {
 
 .search-form {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: nowrap;
     align-items: center;
     gap: 7px;
     width: 100%;
-    max-width: 1180px;
 }
 
 .search-form input[name="keyword"] {
-    width: 300px;
+    /* 余ったスペースを埋めて伸縮。リセットボタンが表の右端に揃う */
+    flex: 1;
+    min-width: 0;
     background-color: #f2f2f2;
 }
 
