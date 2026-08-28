@@ -495,9 +495,70 @@ details.modal .delete-btn:hover {
         justify-content: center;
         flex-wrap: wrap;
     }
-    /* テーブルは最小幅を確保して横スクロール */
-    .table-wrapper table {
-        min-width: 560px;
+    /* スマホでは横スクロールする表をやめ、1件=1カードの縦積みにする。
+       見出し(thead)を隠し、各セルの前に data-label の項目名を出す。 */
+    .table-wrapper {
+        overflow-x: visible;
+    }
+    .table-wrapper table,
+    .table-wrapper tbody {
+        /* table/tbody の列幅計算をやめて通常のブロックにする
+           （これをしないと値が1文字ずつ縦に折れてしまう） */
+        display: block;
+        min-width: 0;
+        width: 100%;
+        border: none;
+    }
+    .table-wrapper thead {
+        /* 見出し行は視覚的に隠す（各セルが自前でラベルを持つ）。
+           display:none ではなくスクリーンリーダー向けに残す */
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+    }
+    .table-wrapper tbody tr {
+        display: block;
+        background: #fff;
+        border: 1px solid #e5ddd3;
+        border-radius: 8px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+        margin-bottom: 14px;
+        padding: 6px 14px;
+    }
+    .table-wrapper tbody td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        /* td はブロック化しても content幅に縮むことがあるため幅を明示する */
+        width: 100%;
+        box-sizing: border-box;
+        border: none;
+        border-bottom: 1px solid #f0ece6;
+        padding: 10px 0;
+        text-align: right;
+        word-break: break-word;
+    }
+    .table-wrapper tbody td:last-child {
+        border-bottom: none;
+    }
+    /* セルの前に項目名（data-label）をラベルとして表示 */
+    .table-wrapper tbody td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #8b7969;
+        text-align: left;
+        flex-shrink: 0;
+    }
+    /* 詳細ボタンのセルはラベルを出さず中央にボタンだけ */
+    .table-wrapper tbody td.td-detail {
+        justify-content: center;
+    }
+    .table-wrapper tbody td.td-detail::before {
+        content: none;
     }
     /* 詳細モーダルを画面幅に収める */
     .modal-content {

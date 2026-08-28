@@ -57,8 +57,8 @@
     <tbody>
     @foreach ($contacts as $contact)
         <tr>
-            <td>{{ $contact->last_name }} {{ $contact->first_name }}</td>
-            <td>
+            <td data-label="お名前">{{ $contact->last_name }} {{ $contact->first_name }}</td>
+            <td data-label="性別">
                 @if ($contact->gender == 1)
                     男性
                 @elseif ($contact->gender == 2)
@@ -68,9 +68,9 @@
                 @endif
             </td>
 
-            <td>{{ $contact->email }}</td>
-            <td>{{ $contact->category->content }}</td>
-            <td>
+            <td data-label="メールアドレス">{{ $contact->email }}</td>
+            <td data-label="お問い合わせの種類">{{ $contact->category->content }}</td>
+            <td data-label="詳細" class="td-detail">
                 <label for="modal-{{ $contact->id }}" class="detail-btn">詳細</label>
                     <input type="checkbox" id="modal-{{ $contact->id }}" class="modal-toggle" hidden>
                         <div class="modal-overlay">
