@@ -12,20 +12,20 @@
 <div class="admin-area">
     <div class="search-area">
         <form action="{{ route('admin.search') }}" method="GET" class="search-form">
-            <input type="text" name="keyword" placeholder="名前やメールアドレスを入力してください">
+            <input type="text" name="keyword" placeholder="名前やメールアドレスを入力してください" value="{{ request('keyword') }}">
             <select name="gender">
                 <option value="">全て</option>
-                <option value="1">男性</option>
-                <option value="2">女性</option>
-                <option value="3">その他</option>
+                <option value="1" @selected(request('gender')==='1')>男性</option>
+                <option value="2" @selected(request('gender')==='2')>女性</option>
+                <option value="3" @selected(request('gender')==='3')>その他</option>
             </select>
             <select name="category_id">
                 <option value="">お問い合わせの種類</option>
                 @foreach ($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->content }}</option>
+                <option value="{{ $category->id }}" @selected(request('category_id')==$category->id)>{{ $category->content }}</option>
                 @endforeach
             </select>
-            <input type="date" name="date">
+            <input type="date" name="date" value="{{ request('date') }}">
                 <button type="submit" class="search-btn">検索</button>
                     @if ($contacts->isEmpty())
                         <tr>
@@ -85,7 +85,7 @@
                                     @endif
                                 </p>
                                 <p>メール：{{ $contact->email }}</p>
-                                <p>電話番号：{{ $contact->tell }}</p>
+                                <p>電話番号：{{ $contact->tel }}</p>
                                 <p>住所：{{ $contact->address }}</p>
                                 <p>建物名：{{ $contact->building }}</p>
                                 <p>種類：{{ $contact->category->content }}</p>

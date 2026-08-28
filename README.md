@@ -1,6 +1,6 @@
 # お問い合わせフォーム
 ```
-本アプリケーションは Laravel 8 を使用して構築したお問い合わせ管理システムです。
+本アプリケーションは Laravel 12 を使用して構築したお問い合わせ管理システムです。
 ユーザー側ではお問い合わせフォーム、確認・サンクスページ、登録画面、ログイン機能を提供し、管理者側では問い合わせ一覧表示、詳細モーダル、削除機能、ダミーデータシーディング、CSV エクスポートなどを実装しています。
 ユーザー管理には Laravel Fortify を使用しています。
 ```
@@ -41,6 +41,13 @@ composer install
 
 `.env.example` を `.env` としてコピーします：
 
+```
+cp .env.example .env
+```
+
+※ `.env.example` はDocker構成（DB_HOST=mysql / laravel_db / laravel_user / laravel_pass、
+APP_URL=http://localhost:8003）に合わせてあるため、コピーするだけで接続できます。
+
 ### 6. APP_KEY の生成
 
 php artisan key:generate
@@ -58,21 +65,21 @@ http://localhost:8003
 ### 管理画面ログイン方法
 
 Fortify を利用しているため、通常の Laravel のログインページからログインします。
-推奨：シーディングで管理ユーザーを登録
-```
-Seeder で admin ユーザーを作成している場合：
-メール: admin@example.com
-パスワード: password
-```
+管理ユーザーのシーダーは用意していないため、`/register` から任意のユーザーを
+新規登録し、そのままログインしてください（本アプリの要件では
+「ログインできるユーザー＝管理者」です。冒頭の注意書き参照）。
 ## 使用技術
 ```
-- Laravel 8.83.x
-- PHP 8.1
+- Laravel 12.x
+- PHP 8.3
 - MySQL 8.0.26
-- Docker (Laravel Sail)
+- Laravel Fortify（認証）
+- Docker（nginx + php-fpm + MySQL + phpMyAdmin の自前構成）
 - Blade
 - CSS
 ```
+※ Laravel 8 で構築後、8→9→10→11→12 と段階的にアップグレード済み
+（各段階でテスト緑・依存脆弱性0件を確認。CIで `composer audit` を常時監査）
 
 ## ER 図
 
@@ -83,8 +90,8 @@ Seeder で admin ユーザーを作成している場合：
 | 画面名               | URL                |
 | -------------------- | ------------------ |
 | お問い合わせフォーム | /contact           |
-| 確認ページ           | /contact/confirm   |
-| サンクスページ       | /contact/thanks    |
+| 確認ページ           | /contact/confirm ※POST遷移のみ（直接開くと405） |
+| サンクスページ       | /contact/thanks ※POST遷移のみ（直接開くと405） |
 | 管理画面             | /admin             |
 | ログイン             | /login             |
 | ユーザー登録         | /register          |
@@ -96,8 +103,7 @@ src/
 │ ├── Actions/
 │ │ └── Fortify/
 │ │ ├── CreateNewUser.php
-│ │ ├── LoginRequest.php
-│ │ └── RegisterRequest.php
+│ │ └── PasswordValidationRules.php ほか
 │ │
 │ ├── Http/
 │ │ ├── Controllers/
@@ -134,25 +140,18 @@ src/
 │ │ ├── login.blade.php
 │ │ └── register.blade.php
 │ │
-│ └── css/
-│ ├── admin.css
-│ ├── app.css
-│ ├── confirm.css
-│ ├── index.css
-│ ├── login.css
-│ ├── register.css
-│ ├── sanitize.css
-│ └── thanks.css
+│ └── views/ 以下のみ（CSSは public/css/ に配置）
 │
 ├── public/
+│ ├── css/
+│ │ ├── admin.css / app.css / confirm.css / index.css
+│ │ └── login.css / register.css / sanitize.css / thanks.css
 │ └── images/
 │ └── contact-form-test.drawio.png
 │
 ├── database/
 │ ├── migrations/
-│ │ ├── 2014_10_12_create_users_table.php
-│ │ ├── 2025_11_04_create_categories_table.php
-│ │ └── 2025_11_05_create_contacts_table.php
+│ │ ├── users / categories / contacts ほかLaravel標準分（計8本）
 │ │
 │ ├── factories/
 │ │ └── ContactFactory.php
@@ -163,11 +162,24 @@ src/
 │
 ├── routes/
 │ └── web.php
-│
-├── docker-compose.yml
-├── .env
-└── README.md
+└── ...
+
+（docker-compose.yml・docker/・.github/workflows/ はリポジトリ直下）
 ```
+## テスト
+
+Feature テスト11件（CSV出力の認可・内容、管理画面の表示・検索フォーム保持）。
+
+```
+# テスト用DBを作成（初回のみ）
+docker compose exec mysql mysql -uroot -proot -e "CREATE DATABASE IF NOT EXISTS laravel_test;"
+# 実行
+docker compose exec php php artisan test
+```
+
+CI（GitHub Actions）でもプッシュごとにテストと `composer audit --locked` による
+依存脆弱性監査を実行しています。
+
 ## メモ
 
 - 動作確認済
@@ -227,8 +239,9 @@ Apple Silicon環境では、DockerイメージのCPUアーキテクチャ互換�
 
 本アプリでは以下の対応を行っています。
 
-- MySQL に `platform: linux/x86_64` を指定
+- MySQL は `platform: linux/x86_64` を指定
 - phpMyAdmin は `arm64v8/phpmyadmin:latest` を使用
+（docker-compose.yml に設定済みのため追加作業は不要です）
 
 これにより Apple Silicon Mac 環境でも動作可能です。
 ```
