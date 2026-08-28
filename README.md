@@ -53,7 +53,7 @@ php artisan migrate:fresh --seed
 
 ブラウザで以下へアクセス：
 
-http://localhost:8000
+http://localhost:8003
 
 ### 管理画面ログイン方法
 
@@ -234,11 +234,11 @@ Apple Silicon環境では、DockerイメージのCPUアーキテクチャ互換�
 ```
 ### URL
 ```
-- ユーザー画面： http://localhost:8000/
+- ユーザー画面： http://localhost:8003/
 
-- 管理者画面： http://localhost:8000/admin
+- 管理者画面： http://localhost:8003/admin
   ※ 新規登録し、ログイン後に管理者画面表示されます
 
-- phpMyAdmin： http://localhost:8080/
+- phpMyAdmin： http://localhost:8084/
 ```
 
