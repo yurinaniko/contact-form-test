@@ -74,8 +74,9 @@ Fortify を利用しているため、通常の Laravel のログインページ
 ## 使用技術
 ```
 - Laravel 12.x
-- PHP 8.3
-- MySQL 8.0.26
+- PHP 8.3（8.3.36）
+- MySQL 8.4 LTS（8.4.13）
+- nginx 1.30（stable）
 - Laravel Fortify（認証）
 - Docker（nginx + php-fpm + MySQL + phpMyAdmin の自前構成）
 - Blade
@@ -242,11 +243,21 @@ Apple Silicon環境では、DockerイメージのCPUアーキテクチャ互換�
 
 本アプリでは以下の対応を行っています。
 
-- MySQL は `platform: linux/x86_64` を指定
+- MySQL 8.4 は arm64 ネイティブのイメージがあるため `platform` 指定は不要（8.0.26 時代の x86_64 指定は削除済み）
 - phpMyAdmin は `arm64v8/phpmyadmin:latest` を使用
 （docker-compose.yml に設定済みのため追加作業は不要です）
 
 これにより Apple Silicon Mac 環境でも動作可能です。
+
+## MySQL 8.0 → 8.4 へ上げる場合（既存の docker/mysql/data がある人）
+
+8.0 のデータフォルダのまま 8.4 を起動せず、ダンプ→空の data で起動→読み込み の順で移行してください。
+（8.4 では `--default-authentication-plugin` が廃止され、ユーザーは caching_sha2_password になります）
+
+1. 旧版のまま: docker compose exec -T mysql mysqldump -uroot -proot --single-transaction --databases laravel_db laravel_test > backup.sql
+2. docker compose stop mysql → docker/mysql/data を docker/mysql/data_backup_xxx へ退避（.gitignore 済み）
+3. 新版で起動: docker compose up -d mysql
+4. 読み込み: docker compose exec -T mysql mysql -uroot -proot < backup.sql
 ```
 ### URL
 ```
